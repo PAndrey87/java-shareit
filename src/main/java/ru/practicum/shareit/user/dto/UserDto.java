@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Builder
 public class UserDto {
-    private long id;
+    private Long id;
     private String name;
     @Email
     @NotBlank

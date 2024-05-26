@@ -20,37 +20,37 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping
-    public ItemDto createItem(@RequestHeader("X-Sharer-User-Id") long userId,
+    public ItemDto createItem(@RequestHeader("X-Sharer-User-Id") Long userId,
                               @Valid @RequestBody ItemDto itemDto) {
         return itemService.create(userId, itemDto);
     }
 
     @PatchMapping("/{itemId}")
-    public ItemDto updateItem(@RequestHeader("X-Sharer-User-Id") long userId,
-                              @PathVariable long itemId,
+    public ItemDto updateItem(@RequestHeader("X-Sharer-User-Id") Long userId,
+                              @PathVariable Long itemId,
                               @RequestBody ItemDto itemDto) {
         return itemService.update(userId, itemId, itemDto);
     }
 
     @DeleteMapping("/{itemId}")
-    public void deleteItem(@RequestHeader("X-Sharer-User-Id") long userId,
-                           @PathVariable long itemId) {
+    public void deleteItem(@RequestHeader("X-Sharer-User-Id") Long userId,
+                           @PathVariable Long itemId) {
         itemService.delete(userId, itemId);
     }
 
     @GetMapping
-    public List<ItemDto> getItem(@RequestHeader("X-Sharer-User-Id") long userId) {
+    public List<ItemDto> getItem(@RequestHeader("X-Sharer-User-Id") Long userId) {
         return itemService.getAllItemsByOwner(userId);
     }
 
     @GetMapping("/{itemId}")
-    public ItemDto findItemById(@RequestHeader("X-Sharer-User-Id") long userId,
-                           @PathVariable long itemId) {
+    public ItemDto findItemById(@RequestHeader("X-Sharer-User-Id") Long userId,
+                           @PathVariable Long itemId) {
         return itemService.findItemById(itemId);
     }
 
     @GetMapping("/search")
-    public List<ItemDto> searchItem(@RequestHeader("X-Sharer-User-Id") long userId,
+    public List<ItemDto> searchItem(@RequestHeader("X-Sharer-User-Id") Long userId,
                                          @RequestParam String text) {
         return itemService.searchItemByNameOrDescription(text);
     }

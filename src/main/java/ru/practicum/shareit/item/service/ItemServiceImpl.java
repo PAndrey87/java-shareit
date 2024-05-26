@@ -30,7 +30,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemDto update(Long userId, Long itemId, ItemDto itemDto) {
         userService.getById(userId);
         Item updatedItem = itemRepository.findItemById(itemId);
-        if (updatedItem.getOwner() != userId) {
+        if (!updatedItem.getOwner().equals(userId)) {
             throw new NotFoundException("У пользователя с ID " + userId + " нет вещи с ID " + itemId);
         }
         if (itemDto.getName() != null && !itemDto.getName().equals(updatedItem.getName())) {

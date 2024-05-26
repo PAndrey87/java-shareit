@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getById(long id) {
+    public UserDto getById(Long id) {
         if (userRepository.findById(id) == null) {
             throw new NotFoundException("User not found");
         }
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto update(long id, UserDto userDto) {
+    public UserDto update(Long id, UserDto userDto) {
         User user = userMapper.toUser(userDto);
         User updatedUser = userRepository.findById(id);
 
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         userRepository.delete(id);
     }
 

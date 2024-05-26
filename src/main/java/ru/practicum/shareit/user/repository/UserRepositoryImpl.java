@@ -9,10 +9,10 @@ import java.util.*;
 @RequiredArgsConstructor
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-    private int userID = 0;
+    private Long userID = 0L;
     private Map<Long, User> users = new HashMap<>();
 
-    private long getId() {
+    private Long getId() {
         return ++userID;
     }
 
@@ -22,7 +22,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findById(long id) {
+    public User findById(Long id) {
         return users.get(id);
     }
 
@@ -34,14 +34,14 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User update(long id, User user) {
+    public User update(Long id, User user) {
         user.setId(id);
         users.put(id, user);
         return user;
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         users.remove(id);
     }
 }

@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Repository
 public class ItemRepositoryImpl implements ItemRepository {
-    private int itemID = 0;
+    private Long itemID = 0L;
     private Map<Long, Item> items = new HashMap<>();
 
-    private long getId() {
+    private Long getId() {
         return ++itemID;
     }
 
