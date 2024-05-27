@@ -10,7 +10,7 @@ import java.util.*;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
     private Long userID = 0L;
-    private Map<Long, User> users = new HashMap<>();
+    private final Map<Long, User> users = new HashMap<>();
 
     private Long getId() {
         return ++userID;

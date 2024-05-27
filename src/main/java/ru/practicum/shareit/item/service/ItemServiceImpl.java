@@ -42,8 +42,6 @@ public class ItemServiceImpl implements ItemService {
         if (itemDto.getAvailable() != null && !itemDto.getAvailable().equals(updatedItem.getAvailable())) {
             updatedItem.setAvailable(itemDto.getAvailable());
         }
-
-//        return itemMapper.toItemDto(itemRepository.update(itemMapper.toItem(itemDto)));
         return itemMapper.toItemDto(itemRepository.update(updatedItem));
     }
 
