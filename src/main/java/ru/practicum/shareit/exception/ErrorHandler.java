@@ -40,8 +40,8 @@ public class ErrorHandler {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Map<String,String> handleUnsupportedSateException(final UnsupportedSateException exception) {
-        log.error("UnsupportedSateException: {}", exception.getMessage());
+    public Map<String,String> handleUnsupportedStateException(final UnsupportedStateException exception) {
+        log.error("UnsupportedStateException: {}", exception.getMessage());
         return  Map.of("error",exception.getMessage());
     }
 }
