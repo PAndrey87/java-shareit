@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "items")
 @Data
+@ToString(exclude = {"request", "owner"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

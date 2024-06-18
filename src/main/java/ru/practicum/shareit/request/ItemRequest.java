@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "requests")
 @Data
+@ToString(exclude = {"requestor"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
