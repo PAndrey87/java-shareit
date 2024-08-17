@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Map;
+
 @Slf4j
 @RestControllerAdvice
 public class ErrorHandler {
@@ -25,5 +27,21 @@ public class ErrorHandler {
         return new String(
                 exception.getMessage()
         );
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleBadRequestException(final BadRequestException exception) {
+        log.error("BadRequestException: {}", exception.getMessage());
+        return new String(
+                exception.getMessage()
+        );
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String,String> handleUnsupportedStateException(final UnsupportedStateException exception) {
+        log.error("UnsupportedStateException: {}", exception.getMessage());
+        return  Map.of("error",exception.getMessage());
     }
 }
