@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public class ItemMapper {
-    public ItemDto toItemDto(Item item) {
+    public ItemDto toItemDto (Item item) {
         return ItemDto.builder()
                 .id(item.getId())
                 .name(item.getName())

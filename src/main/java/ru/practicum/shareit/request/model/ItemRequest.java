@@ -1,10 +1,13 @@
-package ru.practicum.shareit.request;
+package ru.practicum.shareit.request.model;
 
 import lombok.*;
+import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TODO Sprint add-item-requests.
@@ -26,4 +29,8 @@ public class ItemRequest {
     private User requestor;
     @Column(name = "created_date")
     private LocalDateTime created;
+    @OneToMany
+    @JoinColumn(name = "request_id")
+    @Builder.Default
+    private List<Item> items = new ArrayList<>();
 }
