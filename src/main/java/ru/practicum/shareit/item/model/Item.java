@@ -4,7 +4,7 @@ import lombok.*;
 import ru.practicum.shareit.request.model.ItemRequest;
 import ru.practicum.shareit.user.model.User;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * TODO Sprint add-controllers.

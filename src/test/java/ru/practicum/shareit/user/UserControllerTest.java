@@ -91,7 +91,7 @@ public class UserControllerTest {
     // Тест для GET /users/{userId} - пользователь не найден
     @Test
     public void testGetUserById_NotFound() throws Exception {
-        when(userService.getById(99L)).thenThrow(new NotFoundException("User not found"));
+        when(userService.getById(99L)).thenThrow(new NotFoundException("User with id " + 99 + " not found"));
 
         mockMvc.perform(get("/users/99"))
                 .andExpect(status().isNotFound())
@@ -112,22 +112,20 @@ public class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalidUserDto)))
                 .andExpect(status().isBadRequest());
-        // Можно добавить проверку сообщения об ошибке, если нужно
     }
 
-    // Тест для POST /users - пустое имя
+    // Тест для POST /users - пустое имя и емейл
     @Test
-    public void testCreateUser_EmptyName() throws Exception {
+    public void testCreateUser_EmptyEmail() throws Exception {
         UserDto invalidUserDto = UserDto.builder()
                 .name("")
-                .email("test@mail.net")
+                .email("")
                 .build();
 
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalidUserDto)))
                 .andExpect(status().isBadRequest());
-        // Можно добавить проверку сообщения об ошибке, если нужно
     }
 
     // Тест для PATCH /users/{userId} - пользователь не найден
@@ -139,7 +137,6 @@ public class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isNotFound());
-        // Можно добавить проверку сообщения об ошибке, если нужно
     }
 
     // Тест для DELETE /users/{userId} - пользователь не найден
@@ -149,6 +146,5 @@ public class UserControllerTest {
 
         mockMvc.perform(delete("/users/99"))
                 .andExpect(status().isNotFound());
-        // Можно добавить проверку сообщения об ошибке, если нужно
     }
 }
