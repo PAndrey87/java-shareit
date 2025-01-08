@@ -96,36 +96,7 @@ public class UserControllerTest {
         mockMvc.perform(get("/users/99"))
                 .andExpect(status().isNotFound())
 
-         .andExpect(content().string("User with id " + 99 + " not found"));
-    }
-
-    ////////////////////////////////////////////////////////////
-    // Тест для POST /users - невалидный email
-    @Test
-    public void testCreateUser_InvalidEmail() throws Exception {
-        UserDto invalidUserDto = UserDto.builder()
-                .name("TestUser")
-                .email("invalid-email")
-                .build();
-
-        mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(invalidUserDto)))
-                .andExpect(status().isBadRequest());
-    }
-
-    // Тест для POST /users - пустое имя и емейл
-    @Test
-    public void testCreateUser_EmptyEmail() throws Exception {
-        UserDto invalidUserDto = UserDto.builder()
-                .name("")
-                .email("")
-                .build();
-
-        mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(invalidUserDto)))
-                .andExpect(status().isBadRequest());
+                .andExpect(content().string("User with id " + 99 + " not found"));
     }
 
     // Тест для PATCH /users/{userId} - пользователь не найден

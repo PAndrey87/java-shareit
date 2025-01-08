@@ -39,6 +39,7 @@ public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
     private final ItemMapper itemMapper;
     private final UserService userService;
+    private final UserMapper userMapper;
     private final BookingRepository bookingRepository;
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
@@ -56,7 +57,7 @@ public class ItemServiceImpl implements ItemService {
                             + " нет в базе"));
         }
         Item item = itemMapper.toItem(itemDto, request);
-        item.setOwner(UserMapper.toUser(owner));
+        item.setOwner(userMapper.toUser(owner));
         log.info("Сохраняем item: {}", item);
         itemRepository.save(item);
         log.info("Сохранили item: {}", item);
@@ -118,7 +119,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemDto> searchItemByNameOrDescription(String text) {
-        if (text.isEmpty() || text.isBlank()) {
+        if (text.isBlank()) {
             return new ArrayList<>();
         }
         return itemRepository.findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCaseAndAvailableTrue(text, text).stream().map(itemMapper::toItemDto).collect(Collectors.toList());

@@ -27,6 +27,7 @@ import static java.util.stream.Collectors.toList;
 public class ItemRequestServiceImpl implements ItemRequestService {
     private final ItemRequestRepository repository;
     private final UserService userService;
+    private final UserMapper userMapper;
     private final ItemRepository itemRepository;
     private final ItemMapper itemMapper;
     private final ItemRequestMapper itemRequestMapper;
@@ -34,7 +35,7 @@ public class ItemRequestServiceImpl implements ItemRequestService {
     @Override
     @Transactional
     public ItemRequestDto create(Long userId, ItemRequestAddDto itemRequestAddDto) {
-        User requestor = UserMapper.toUser(userService.getById(userId));
+        User requestor = userMapper.toUser(userService.getById(userId));
 
         ItemRequest itemRequest = ItemRequestMapper.toItemRequest(itemRequestAddDto);
         itemRequest.setRequestor(requestor);
