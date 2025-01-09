@@ -126,6 +126,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional
     public CommentDto createComment(Long userId, Long itemId, CommentDto commentDto) {
         User author = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("Пользователь с ID " + itemId + " не найден"));
