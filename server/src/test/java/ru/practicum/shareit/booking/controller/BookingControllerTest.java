@@ -45,7 +45,7 @@ class BookingControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void testCreateBooking() throws Exception {
+    void createBookingReturnsBookingDtoAndStatusOk() throws Exception {
         long userId = 1L;
         BookingAddDto requestDto = BookingAddDto.builder()
                 .id(1L)
@@ -76,7 +76,7 @@ class BookingControllerTest {
     }
 
     @Test
-    void testApproveOrRejectBooking() throws Exception {
+    void  approveOrRejectReturnsBookingDtoAndStatusO() throws Exception {
         String approved = "true";
         long bookingId = 1L;
         long userId = 1L;
@@ -94,7 +94,7 @@ class BookingControllerTest {
     }
 
     @Test
-    void testGetBookingById() throws Exception {
+    void getByIdReturnsBookingDtoAndStatusOk() throws Exception {
         long bookingId = 1L;
         long userId = 1L;
         BookingDto responseDto = BookingDto.builder().build();
@@ -110,7 +110,7 @@ class BookingControllerTest {
     }
 
     @Test
-    void testGetBookings() throws Exception {
+    void getUserBookingsReturnsEmptyList() throws Exception {
         String state = "PAST";
         long userId = 1L;
 
@@ -126,7 +126,7 @@ class BookingControllerTest {
     }
 
     @Test
-    void testGetOwnerBookings() throws Exception {
+    void getOwnerBookingsReturnsEmptyList() throws Exception {
         String state = "ALL";
         long userId = 1L;
 

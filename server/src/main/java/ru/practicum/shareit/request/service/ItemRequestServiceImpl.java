@@ -66,11 +66,7 @@ public class ItemRequestServiceImpl implements ItemRequestService {
 
     @Override
     public ItemRequestDto getItemRequest(Long requestId) {
-//        User user = UserMapper.toUser(userService.getById(userId));
         ItemRequest itemRequest = findItemRequestById(requestId);
-/*        if (!user.getId().equals(itemRequest.getRequestor().getId())) {
-            throw new NotFoundException("У вас нет доступа к запросу с ID " + requestId);
-        }*/
         return itemRequestMapper.toItemRequestDto(itemRequest);
     }
 
